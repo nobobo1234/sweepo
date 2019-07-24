@@ -39,10 +39,10 @@ function mousePressed() {
     if(x < field.length && y < field[0].length) {
         field[x][y].reveal();
         // If you touch a bomb, you're game over
-        //        if(field[x][y].isBomb) {
+        if(field[x][y].isBomb) {
             for(const box of field.flat()) {
                 box.isChosen = true;
             }
-        //}
+        }
     }
 }
