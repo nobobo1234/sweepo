@@ -20,7 +20,7 @@ class Box {
         this.bombs = this.neighbors.filter(box => box.isBomb).length;
     }
 
-    reveal() {
+    async reveal() {
         this.isChosen = true;
         if(this.bombs === 0) {
             for(const neighbor of this.neighbors) {
