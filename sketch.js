@@ -3,6 +3,7 @@ const squareLength = 30; // Length of a square in the field in pixels
 
 
 function setup() {
+    pixelDensity(1);
     createCanvas(windowWidth/2, windowHeight);
     
     for(let i = 0; i < (width-squareLength)/squareLength; i++) {
@@ -38,10 +39,10 @@ function mousePressed() {
     if(x < field.length && y < field[0].length) {
         field[x][y].reveal();
         // If you touch a bomb, you're game over
-        if(field[x][y].isBomb) {
+        //        if(field[x][y].isBomb) {
             for(const box of field.flat()) {
                 box.isChosen = true;
             }
-        }
+        //}
     }
 }
