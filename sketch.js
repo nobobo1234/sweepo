@@ -10,6 +10,7 @@ function setup() {
     restart.position(windowWidth/2 + 10, 10);
     restart.mousePressed(() => {
         field = [];
+        firstClick = true;
         message.html('');
         setup();
     });
