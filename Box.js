@@ -1,11 +1,11 @@
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 class Box {
-    constructor(x, y, length, isBomb) {
+    constructor(x, y, length) {
         this.x = x;
         this.y = y;
         this.length = length;
-        this.isBomb = isBomb;
+        this.isBomb = false;
         this.neighbors = [];
         this.bombs = 0;
         this.isChosen = false;
