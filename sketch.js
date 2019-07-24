@@ -73,7 +73,7 @@ function mousePressed() {
                 message.html('Game over! Please press restart to restart the game');                
             }
         }
-    } else if (mouseButton === RIGHT) {
-        field[x][y].isFlagged = !field[x][y].isFlagged; 
+    } else if (mouseButton === RIGHT && x < field.length && y < field[0].length) {
+        if (!field[x][y].isChosen) field[x][y].isFlagged = !field[x][y].isFlagged; 
     }
 }

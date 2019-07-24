@@ -39,10 +39,12 @@ class Box {
         const x = this.x * this.length;
         const y = this.y * this.length;
         push();
-        if (this.isChosen) { 
-            fill(200);
-        } else if (this.isFlagged) {
+        if (this.isChosen && this.isBomb) {
+            fill(255);
+        } else if (this.isChosen && this.isFlagged) { 
             fill(255, 0, 0);
+        } else if (this.isChosen) {
+            fill(200);
         } else {
             fill(255);
         }
@@ -58,6 +60,11 @@ class Box {
         if (this.isBomb && this.isChosen) {
             strokeWeight(0);
             fill(0);
+            ellipse(x + this.length / 2, y + this.length / 2, this.length / 3);
+        }
+        if (this.isFlagged && !this.isChosen) {
+            strokeWeight(0);
+            fill(255, 0, 0);
             ellipse(x + this.length / 2, y + this.length / 2, this.length / 3);
         }
         pop();
