@@ -13,7 +13,7 @@ function setup() {
             const y = j;
             let isBomb = false;
 
-            if(random() < 0.2) isBomb = true;
+            if(random() < 0.1) isBomb = true;
 
             field[i][j] = new Box(x, y, squareLength, isBomb); // Add a new 'Box' to the field
         }

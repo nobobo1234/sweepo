@@ -1,3 +1,6 @@
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 class Box {
     constructor(x, y, length, isBomb) {
         this.x = x;
@@ -24,7 +27,10 @@ class Box {
         this.isChosen = true;
         if(this.bombs === 0) {
             for(const neighbor of this.neighbors) {
-                if(!neighbor.isBomb && !neighbor.isChosen) neighbor.reveal();
+                if(!neighbor.isBomb && !neighbor.isChosen) {
+                    await sleep(50);
+                    neighbor.reveal();
+                }
             }
         }
     }   
