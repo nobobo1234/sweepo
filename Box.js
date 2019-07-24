@@ -1,4 +1,3 @@
-
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 class Box {
@@ -39,9 +38,7 @@ class Box {
         const x = this.x * this.length;
         const y = this.y * this.length;
         push();
-        if(this.isChosen && this.isBomb) {
-            fill(0);
-        } else if(this.isChosen) {
+        if(this.isChosen) { 
             fill(200);
         } else {
             fill(255);
@@ -49,11 +46,16 @@ class Box {
         stroke(0);
         rect(x, y, this.length, this.length);
         // Draw the text
-        if(this.isChosen) {
+        if(this.isChosen && !this.isBomb) {
             fill(0);
             strokeWeight(0);
             textAlign(CENTER, CENTER);
             text(`${this.bombs ? this.bombs : ''}`, x + this.length / 2, y + this.length / 2);
+        }
+        if(this.isBomb && this.isChosen) {
+            strokeWeight(0);
+            fill(0);
+            ellipse(x + this.length / 2, y + this.length / 2, this.length / 3);
         }
         pop();
     }
