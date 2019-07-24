@@ -12,7 +12,7 @@ class Box {
     addNeighbors(field) {
         for (let k = -1; k < 2; k++) {
             for (let m = -1; m < 2; m++) {
-                if(this.x + k > 0 && this.y + m > 0 && this.x + k < field.length && this.y + m < field[0].length && abs(k) + abs(m) > 0) {
+                if(this.x + k >= 0 && this.y + m >= 0 && this.x + k < field.length && this.y + m < field[0].length && abs(k) + abs(m) > 0) {
                     this.neighbors.push(field[this.x+k][this.y+m]);
                 }
             }
@@ -24,7 +24,7 @@ class Box {
         this.isChosen = true;
         if(this.bombs === 0) {
             for(const neighbor of this.neighbors) {
-                if(!neighbor.isBomb && neighbor.bombs === 0) neighbor.reveal();
+                if(!neighbor.isBomb && !neighbor.isChosen) neighbor.reveal();
             }
         }
     }   

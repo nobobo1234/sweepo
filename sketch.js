@@ -36,7 +36,7 @@ function mousePressed() {
     const x = floor(mouseX / squareLength);
     const y = floor(mouseY / squareLength);
     if(x < field.length && y < field[0].length) {
-        field[x][y].isChosen = true;
+        field[x][y].reveal();
         // If you touch a bomb, you're game over
         if(field[x][y].isBomb) {
             for(const box of field.flat()) {
