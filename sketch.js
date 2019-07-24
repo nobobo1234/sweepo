@@ -16,14 +16,14 @@ function setup() {
     message = createP('');
     message.position(windowWidth / 2 + 10, 30);
     
-    for(let i = 0; i < (width-squareLength)/squareLength; i++) {
+    for (let i = 0; i < (width-squareLength)/squareLength; i++) {
         field.push([]); // Add a new column to the 2d array
-        for(let j = 0; j < (height-squareLength)/squareLength; j++) {
+        for (let j = 0; j < (height-squareLength)/squareLength; j++) {
             const x = i;
             const y = j;
             let isBomb = false;
 
-            if(random() < 0.2) isBomb = true;
+            if (random() < 0.2) isBomb = true;
 
             field[i][j] = new Box(x, y, squareLength, isBomb); // Add a new 'Box' to the field
         }
@@ -41,24 +41,24 @@ function setup() {
 function draw() {
     background(255);
 
-    for(const box of field.flat()) {
+    for (const box of field.flat()) {
         box.show();
     }
 }
 
 function mousePressed() {
-    if(mouseButton === LEFT) {
-        if(field.flat().filter(b => b.isChosen).length + field.flat().filter(b => b.isBomb).length === field.flat().length) {
+    if (mouseButton === LEFT) {
+        if (field.flat().filter(b => b.isChosen).length + field.flat().filter(b => b.isBomb).length === field.flat().length) {
             message.html('You won!');
         }
 
         const x = floor(mouseX / squareLength);
         const y = floor(mouseY / squareLength);
-        if(x < field.length && y < field[0].length) {
+        if (x < field.length && y < field[0].length) {
             field[x][y].reveal();
             // If you touch a bomb, you're game over
-            if(field[x][y].isBomb) {
-                for(const box of field.flat()) {
+            if (field[x][y].isBomb) {
+                for (const box of field.flat()) {
                     box.isChosen = true;
                 }
                 message.html('Game over! Please press restart to restart the game');                

@@ -14,7 +14,7 @@ class Box {
     addNeighbors(field) {
         for (let k = -1; k < 2; k++) {
             for (let m = -1; m < 2; m++) {
-                if(this.x + k >= 0 && this.y + m >= 0 && this.x + k < field.length && this.y + m < field[0].length && abs(k) + abs(m) > 0) {
+                if (this.x + k >= 0 && this.y + m >= 0 && this.x + k < field.length && this.y + m < field[0].length && abs(k) + abs(m) > 0) {
                     this.neighbors.push(field[this.x+k][this.y+m]);
                 }
             }
@@ -24,13 +24,13 @@ class Box {
 
     async reveal() {
         this.isChosen = true;
-        if(this.bombs === 0) {
+        if (this.bombs === 0) {
             const toBeRevealed = [];
-            for(const neighbor of this.neighbors) {
-                if(!neighbor.isBomb && !neighbor.isChosen) toBeRevealed.push(neighbor);
+            for (const neighbor of this.neighbors) {
+                if (!neighbor.isBomb && !neighbor.isChosen) toBeRevealed.push(neighbor);
             }
             await sleep(50);
-            for(const neighbor of toBeRevealed) neighbor.reveal();
+            for (const neighbor of toBeRevealed) neighbor.reveal();
         }
     }   
 
@@ -38,7 +38,7 @@ class Box {
         const x = this.x * this.length;
         const y = this.y * this.length;
         push();
-        if(this.isChosen) { 
+        if (this.isChosen) { 
             fill(200);
         } else {
             fill(255);
@@ -46,13 +46,13 @@ class Box {
         stroke(0);
         rect(x, y, this.length, this.length);
         // Draw the text
-        if(this.isChosen && !this.isBomb) {
+        if (this.isChosen && !this.isBomb) {
             fill(0);
             strokeWeight(0);
             textAlign(CENTER, CENTER);
             text(`${this.bombs ? this.bombs : ''}`, x + this.length / 2, y + this.length / 2);
         }
-        if(this.isBomb && this.isChosen) {
+        if (this.isBomb && this.isChosen) {
             strokeWeight(0);
             fill(0);
             ellipse(x + this.length / 2, y + this.length / 2, this.length / 3);

@@ -1,0 +1,15 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
+    "env": {
+        "browser": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+        "no-undef": "off",
+        "indent": ["error", 4],
+        "no-unused-vars": "off",
+        "keyword-spacing": "error"
+    }
+}
