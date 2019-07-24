@@ -26,12 +26,12 @@ class Box {
     async reveal() {
         this.isChosen = true;
         if(this.bombs === 0) {
+            const toBeRevealed = [];
             for(const neighbor of this.neighbors) {
-                if(!neighbor.isBomb && !neighbor.isChosen) {
-                    await sleep(50);
-                    neighbor.reveal();
-                }
+                if(!neighbor.isBomb && !neighbor.isChosen) toBeRevealed.push(neighbor);
             }
+            await sleep(50);
+            for(const neighbor of toBeRevealed) neighbor.reveal();
         }
     }   
 
