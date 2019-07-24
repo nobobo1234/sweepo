@@ -41,14 +41,15 @@ function draw() {
 }
 
 function mousePressed() {
+    const x = floor(mouseX / squareLength);
+    const y = floor(mouseY / squareLength);
     if (mouseButton === LEFT) {
         if (field.flat().filter(b => b.isChosen).length + field.flat().filter(b => b.isBomb).length === field.flat().length) {
             message.html('You won!');
         }  
 
-        const x = floor(mouseX / squareLength);
-        const y = floor(mouseY / squareLength);
         if (x < field.length && y < field[0].length) {
+            if (field[x][y].isFlagged) return; // Do nothing if field is flagged
             if (firstClick) { // If clicked for first time
                 field[x][y].isChosen = true; // Reveal only this field
 
@@ -72,5 +73,7 @@ function mousePressed() {
                 message.html('Game over! Please press restart to restart the game');                
             }
         }
+    } else if (mouseButton === RIGHT) {
+        field[x][y].isFlagged = !field[x][y].isFlagged; 
     }
 }

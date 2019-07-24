@@ -9,6 +9,7 @@ class Box {
         this.neighbors = [];
         this.bombs = 0;
         this.isChosen = false;
+        this.isFlagged = false;
     }  
 
     addNeighbors(field) {
@@ -27,7 +28,7 @@ class Box {
         if (this.bombs === 0) {
             const toBeRevealed = [];
             for (const neighbor of this.neighbors) {
-                if (!neighbor.isBomb && !neighbor.isChosen) toBeRevealed.push(neighbor);
+                if (!neighbor.isBomb && !neighbor.isChosen && !neighbor.isFlagged) toBeRevealed.push(neighbor);
             }
             await sleep(50);
             for (const neighbor of toBeRevealed) neighbor.reveal();
@@ -40,6 +41,8 @@ class Box {
         push();
         if (this.isChosen) { 
             fill(200);
+        } else if (this.isFlagged) {
+            fill(255, 0, 0);
         } else {
             fill(255);
         }
